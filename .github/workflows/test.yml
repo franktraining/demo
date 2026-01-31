@@ -43,11 +43,11 @@ jobs:
             target/test-classes/
           retention-days: 30
 
-      - name: Test Report Summary
-        uses: dorny/test-reporter@v1
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v4
         if: always()
         with:
-          name: TestNG Results
-          path: target/surefire-reports/testng-results.xml
-          reporter: java-junit
-          fail-on-error: false
+          report_paths: 'target/surefire-reports/*.xml'
+          fail_on_failure: false
+          include_passed: true
+          detailed_summary: true
